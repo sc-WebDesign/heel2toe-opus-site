@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://heel2toecobblers.co.uk/sitemap.xml

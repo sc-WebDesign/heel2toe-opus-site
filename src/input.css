@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@theme {
+  /* Sansita is a display serif with a real 700/800. Deliberately a different
+     CLASS from the last two builds, which were a squared industrial sans
+     (Changa) and a contemporary slab (Aleo). A serif suits a trade that mends
+     rather than replaces. QA asserts fontWeight 700 AND that the face loaded. */
+  --font-display: "Sansita", ui-serif, Georgia, serif;
+  --font-body: "Carlito", ui-sans-serif, system-ui, sans-serif;
+
+  /* "Tack". Espresso with a bright lime. The cobbler cliche is brown leather
+     and gold, so the brown is kept as the DARK and the accent refuses the gold
+     entirely: a bright green reads as new life put back into old things, which
+     is exactly what this shop is being paid for.
+     HONEST NOTE ON ADJACENCY: the existing "lime" theme is #4d7c0f on a COOL
+     dark #1c212a. This is a markedly brighter #84cc16 on a WARM brown-black.
+     Related family, different pairing; recorded rather than glossed over. */
+  --color-brand-50: #f9f8f6;
+  --color-brand-100: #f0eeea;
+  --color-brand-200: #ded9d2;
+  --color-brand-300: #c2bab0;
+  --color-brand-400: #9d9287;
+  --color-brand-500: #7f7466;
+  --color-brand-600: #6a5f53;
+  --color-brand-700: #574e45;
+  --color-brand-800: #47403a;
+  --color-brand-900: #3a3430;
+  --color-brand-950: #221c18;
+
+  --color-accent-50: #f7fee7;
+  --color-accent-100: #ecfccb;
+  --color-accent-200: #d9f99d;
+  --color-accent-300: #bef264;
+  --color-accent-400: #a3e635;
+  --color-accent-500: #84cc16;
+  --color-accent-600: #65a30d;
+  --color-accent-700: #4d7c0f;
+  --color-accent-800: #3f6212;
+  --color-accent-900: #365314;
+  --color-accent-950: #1a2e05;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    @apply bg-brand-50 text-brand-950 antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent-500 px-7 py-3.5 text-base font-bold text-brand-950 shadow-lg shadow-brand-950/25 transition hover:bg-accent-400 focus:outline-none focus-visible:ring-4 focus-visible:ring-accent-300;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-brand-400 px-7 py-3.5 text-base font-bold text-brand-100 transition hover:border-accent-400 hover:text-accent-300 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-700;
+  }
+  .section-eyebrow {
+    @apply mb-3 inline-block text-xs font-bold uppercase tracking-[0.26em] text-accent-700;
+  }
+  .card {
+    @apply rounded-2xl border border-brand-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md;
+  }
+  .note { @apply rounded-2xl border border-accent-300 bg-accent-50 p-6; }
+
+  .draw-wrap { @apply block w-full overflow-hidden; }
+
+  /* ---- Bespoke 1: a boot in profile. A composite object, so every part has to
+         actually TOUCH: the shaft and the toe both sit ON the sole, the heel
+         block hangs UNDER it, and the shaft and toe overlap each other. QA
+         asserts all four joins, that the heel is at the REAR, and that the
+         shaft is taller than the toe box, because otherwise it is a shoe. ---- */
+  .boot { @apply relative mx-auto block; width: 300px; height: 220px; }
+  /* The sole and heel were brand-950, which is EXACTLY the colour of the dark
+     hero behind them, so the boot rendered as an upper floating with no sole at
+     all. The contrast probe caught both at 1.00. On a dark hero every part has
+     to be LIGHTER than the background, which inverts the real world where a
+     sole is darker than the upper. Sole and heel differ from each other too, so
+     the heel block reads as a separate piece. */
+  .bt-sole {
+    @apply absolute block;
+    left: 30px; top: 160px; width: 230px; height: 18px;
+    border-radius: 4px 9px 9px 4px;
+    background-color: var(--color-brand-300);
+  }
+  .bt-heel {
+    @apply absolute block;
+    left: 36px; top: 178px; width: 44px; height: 26px;
+    border-radius: 0 0 4px 4px;
+    background-color: var(--color-brand-400);
+  }
+  .bt-shaft {
+    @apply absolute block;
+    left: 40px; top: 60px; width: 90px; height: 100px;
+    border-radius: 14px 14px 0 0;
+    background-color: var(--color-brand-700);
+  }
+  .bt-toe {
+    @apply absolute block;
+    left: 120px; top: 118px; width: 130px; height: 42px;
+    border-radius: 6px 34px 0 0;
+    background-color: var(--color-brand-700);
+  }
+  /* Eyelets sit on the shaft, in accent so the boot is not one flat colour. */
+  .bt-eye {
+    @apply absolute block rounded-full;
+    left: 108px; width: 12px; height: 12px;
+    background-color: var(--color-accent-400);
+  }
+  .bt-e1 { top: 78px; }
+  .bt-e2 { top: 100px; }
+  .bt-e3 { top: 122px; }
+
+  /* ---- Bespoke 2: a shoe brush. Bristles hang from the handle's underside.
+         Deliberately contrasted with the key at the last build: those teeth
+         varied in depth and sat at one end, these are UNIFORM and run the whole
+         length, and QA asserts exactly that difference. ---- */
+  .brush { @apply relative mx-auto block; width: 260px; height: 130px; }
+  .br-handle {
+    @apply absolute block;
+    left: 20px; top: 40px; width: 220px; height: 34px;
+    border-radius: 17px;
+    background-color: var(--color-brand-700);
+  }
+  .br-bristle {
+    @apply absolute block;
+    top: 74px; width: 12px; height: 26px;
+    border-radius: 0 0 3px 3px;
+    background-color: var(--color-accent-600);
+  }
+  .br-b1 { left: 38px; }
+  .br-b2 { left: 62px; }
+  .br-b3 { left: 86px; }
+  .br-b4 { left: 110px; }
+  .br-b5 { left: 134px; }
+  .br-b6 { left: 158px; }
+  .br-b7 { left: 182px; }
+  .br-b8 { left: 206px; }
+
+  .faq-item { @apply border-b border-brand-200; }
+
+  .js-reveal {
+    @apply translate-y-4 opacity-0;
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .js-reveal.in { @apply translate-y-0 opacity-100; }
+}
+
+@media (max-width: 430px) {
+  .boot, .brush { transform: scale(0.8); transform-origin: top center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js-reveal { @apply translate-y-0 opacity-100; transition: none; }
+}
