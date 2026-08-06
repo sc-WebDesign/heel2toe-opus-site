@@ -66,93 +66,14 @@
     @apply rounded-2xl border border-brand-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md;
   }
   .note { @apply rounded-2xl border border-accent-300 bg-accent-50 p-6; }
-
-  .draw-wrap { @apply block w-full overflow-hidden; }
-
-  /* ---- Bespoke 1: a boot in profile. A composite object, so every part has to
-         actually TOUCH: the shaft and the toe both sit ON the sole, the heel
-         block hangs UNDER it, and the shaft and toe overlap each other. QA
-         asserts all four joins, that the heel is at the REAR, and that the
-         shaft is taller than the toe box, because otherwise it is a shoe. ---- */
-  .boot { @apply relative mx-auto block; width: 300px; height: 220px; }
-  /* The sole and heel were brand-950, which is EXACTLY the colour of the dark
-     hero behind them, so the boot rendered as an upper floating with no sole at
-     all. The contrast probe caught both at 1.00. On a dark hero every part has
-     to be LIGHTER than the background, which inverts the real world where a
-     sole is darker than the upper. Sole and heel differ from each other too, so
-     the heel block reads as a separate piece. */
-  .bt-sole {
-    @apply absolute block;
-    left: 30px; top: 160px; width: 230px; height: 18px;
-    border-radius: 4px 9px 9px 4px;
-    background-color: var(--color-brand-300);
+  .photo-frame {
+    @apply relative overflow-hidden rounded-2xl bg-brand-900 ring-1 ring-brand-950/10;
   }
-  .bt-heel {
-    @apply absolute block;
-    left: 36px; top: 178px; width: 44px; height: 26px;
-    border-radius: 0 0 4px 4px;
-    background-color: var(--color-brand-400);
+  .photo-frame img {
+    @apply h-full w-full object-cover;
   }
-  .bt-shaft {
-    @apply absolute block;
-    left: 40px; top: 60px; width: 90px; height: 100px;
-    border-radius: 14px 14px 0 0;
-    background-color: var(--color-brand-700);
-  }
-  .bt-toe {
-    @apply absolute block;
-    left: 120px; top: 118px; width: 130px; height: 42px;
-    border-radius: 6px 34px 0 0;
-    background-color: var(--color-brand-700);
-  }
-  /* Eyelets sit on the shaft, in accent so the boot is not one flat colour. */
-  .bt-eye {
-    @apply absolute block rounded-full;
-    left: 108px; width: 12px; height: 12px;
-    background-color: var(--color-accent-400);
-  }
-  .bt-e1 { top: 78px; }
-  .bt-e2 { top: 100px; }
-  .bt-e3 { top: 122px; }
-
-  /* ---- Bespoke 2: a shoe brush. Bristles hang from the handle's underside.
-         Deliberately contrasted with the key at the last build: those teeth
-         varied in depth and sat at one end, these are UNIFORM and run the whole
-         length, and QA asserts exactly that difference. ---- */
-  .brush { @apply relative mx-auto block; width: 260px; height: 130px; }
-  .br-handle {
-    @apply absolute block;
-    left: 20px; top: 40px; width: 220px; height: 34px;
-    border-radius: 17px;
-    background-color: var(--color-brand-700);
-  }
-  .br-bristle {
-    @apply absolute block;
-    top: 74px; width: 12px; height: 26px;
-    border-radius: 0 0 3px 3px;
-    background-color: var(--color-accent-600);
-  }
-  .br-b1 { left: 38px; }
-  .br-b2 { left: 62px; }
-  .br-b3 { left: 86px; }
-  .br-b4 { left: 110px; }
-  .br-b5 { left: 134px; }
-  .br-b6 { left: 158px; }
-  .br-b7 { left: 182px; }
-  .br-b8 { left: 206px; }
-
-  .faq-item { @apply border-b border-brand-200; }
-
-  .js-reveal {
-    @apply translate-y-4 opacity-0;
-    transition: opacity 0.55s ease, transform 0.55s ease;
-  }
-  .js-reveal.in { @apply translate-y-0 opacity-100; }
 }
 
-@media (max-width: 430px) {
-  .boot, .brush { transform: scale(0.8); transform-origin: top center; }
-}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
